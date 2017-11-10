@@ -3,6 +3,57 @@
 <head>
 	<meta charset="UTF-8">
 	<title>图片上移效果</title>
+	<style type="text/css">
+		*{
+			list-style: none;
+			padding: 0px;
+			margin: 0px;
+			font-size: 12px;
+			font-family: 微软雅黑;
+		}
+
+		img{
+			border: 0px;
+		}
+
+		.picList{
+			width: 100%;
+			float: left;
+		}
+
+		.picList .col{
+			width: 300px;
+			height: 200px;
+			position: relative;
+			overflow: hidden;
+			float: left;
+			margin: 10px 0 0 10px;
+		}
+
+		.picList .col img, .col a{
+			position: absolute;
+			top: 0px;
+			left: 0px;
+		}
+
+		.picList .col img{
+			width: 100%;
+		}
+
+		.picList .col a{
+            display: block;
+            width: 280px;
+            height: 180px;
+            top: 160px;
+            background: #000;
+            color: white;
+            font-style: normal;
+            line-height: 25px;
+            padding: 10px;
+            opacity: 0.8;
+            text-decoration: none;
+		}
+	</style>
 </head>
 <body>
 <div class='picList' id="picList">
@@ -27,5 +78,77 @@
         </a> 
     </div>
 </div>
+
+<script type="text/javascript">
+
+
+	/*
+	// 常规写法
+	var div1 = document.getElementById('pic1');
+	var div2 = document.getElementById('pic2');
+	var div3 = document.getElementById('pic3');
+
+	div1.onmouseover = function() {
+		div1.getElementsByTagName('a')[0].style.top = 0;
+	}
+	div1.onmouseout = function() {
+		div1.getElementsByTagName('a')[0].style.top = 160 + 'px';
+	}
+
+	div2.onmouseover = function() {
+		div2.getElementsByTagName('a')[0].style.top = 0;
+	}
+	div2.onmouseout = function() {
+		div2.getElementsByTagName('a')[0].style.top = 160 + 'px';
+	}
+
+	div3.onmouseover = function() {
+		div3.getElementsByTagName('a')[0].style.top = 0;
+	}
+	div3.onmouseout = function() {
+		div3.getElementsByTagName('a')[0].style.top = 160 + 'px';
+	}
+	*/
+    
+
+    /*
+    //函数传参数写法
+    function showMeg(index) {
+       var Div = document.getElementById('pic' + index);
+       // console.log(Div.innerHTML);
+
+       Div.onmouseover = showAtop;
+       Div.onmouseout = hideAtop;
+
+       function showAtop() {
+       	   Div.getElementsByTagName('a')[0].style.top = 0;
+       }
+       function hideAtop() {
+       	   Div.getElementsByTagName('a')[0].style.top = 160 + 'px';
+       }
+    }
+    showMeg(1);
+	showMeg(2);
+	showMeg(3);
+	*/
+
+	//代码深度优化---使用循环
+    function showDetail() {
+    	var Div = document.getElementById('picList').getElementsByTagName('div');
+    	var divHeight = 160;
+    	for(var i =0; i<Div.length; i++){
+            Div[i].onmouseover = showMeg;
+            Div[i].onmouseout = hideMeg;
+    	}
+    	function showMeg() {
+    		this.getElementsByTagName('a')[0].style.top = 0;
+    	}
+    	function hideMeg() {
+    		this.getElementsByTagName('a')[0].style.top = divHeight + 'px';
+    	}
+    }
+    showDetail();
+
+</script>
 </body>
 </html>
